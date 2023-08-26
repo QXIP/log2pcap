@@ -1,3 +1,4 @@
+require('buffer')
 const log2pcap = require('./index.js');
 
 var pcapFile = log2pcap.encodePcap([

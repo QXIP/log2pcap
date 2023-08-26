@@ -2020,6 +2020,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 },{}],4:[function(require,module,exports){
 (function (Buffer){(function (){
+require('buffer')
 const log2pcap = require('./index.js');
 
 var pcapFile = log2pcap.encodePcap([
@@ -2029,20 +2030,24 @@ var pcapFile = log2pcap.encodePcap([
 
 console.log(pcapFile);
 
+console.log('log2pcap done');
+
 }).call(this)}).call(this,require("buffer").Buffer)
 },{"./index.js":5,"buffer":2}],5:[function(require,module,exports){
 (function (Buffer){(function (){
+/*
+   log2pcap exporter
+   (c) qxip bv 2023
+*/
+
 const ip = require('ip-packet');
-const generator = require('pcap-generator');
 const tcp = require('tcp-packet');
 const udp = require('udp-packet');
+const generator = require('pcap-generator');
 
 function encodePcap(packetArray) {
   const pcapData = [];
-
   packetArray.forEach(packet => {
-
-    console.log(packet);
     // Create TCP or UDP packet
     let packet_data;
     if (packet.proto === 6) { // TCP
@@ -2065,14 +2070,12 @@ function encodePcap(packetArray) {
       destinationIp: packet.dstIp,
       data: packet_data
     })
-
     // Combine IP and transport packets
     pcapData.push({
       timestamp: packet.ts || Date.now(),
       buffer: ipv4_packet
     });
   });
-
   // Generate the pcap file
   const pcapFileBuffer = generator(pcapData);
   return pcapFileBuffer;
@@ -2081,7 +2084,6 @@ function encodePcap(packetArray) {
 module.exports = {
   encodePcap
 };
-
 
 }).call(this)}).call(this,require("buffer").Buffer)
 },{"buffer":2,"ip-packet":6,"pcap-generator":7,"tcp-packet":8,"udp-packet":9}],6:[function(require,module,exports){
@@ -2103,11 +2105,6 @@ function configure (opts) {
     buf.writeUInt16BE(0, offset + 10)
     encodeIp(packet.sourceIp, buf, offset + 12)
     encodeIp(packet.destinationIp, buf, offset + 16)
-
-//    buf.writeUInt16BE(packet.sourcePort || 0, offset + 20)
-//    buf.writeUInt16BE(packet.destinationPort || 0, offset + 22)
-
-
     buf.writeUInt16BE(checksum(buf, offset, offset + 20), offset + 10)
     packet.data.copy(buf, offset + 20)
 

@@ -1,0 +1,17 @@
+{
+  "name": "log2pcap",
+  "version": "1.0.0",
+  "description": "Generate PCAP files from Packets, Log Buffers & Co",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lorenzo.mangani@gmail.com",
+  "license": "AGPLv3",
+  "dependencies": {
+    "ip-packet": "^1.1.0",
+    "pcap-generator": "^0.2.3",
+    "tcp-packet": "^0.1.1",
+    "udp-packet": "^2.0.0"
+  }
+}

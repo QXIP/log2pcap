@@ -5,3 +5,4 @@ var pcapFile = log2pcap.encodePcap([
   {srcIp:"127.0.0.2", srcPort: 5080, dstIp: "127.0.0.1", dstPort: 5060, proto: 17, data: Buffer.from("WORLD")}
 ])
 fs.writeFileSync('helloworld.pcap', pcapFile)
+console.log('done! analyize with: tshark -r helloworld.pcap');

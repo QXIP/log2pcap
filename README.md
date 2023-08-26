@@ -12,3 +12,5 @@ var pcapFile = log2pcap.encodePcap([
 ])
 ```
 
+### Limitations
+- Only supports TCP (6) and UDP (17) protocols and IPv4

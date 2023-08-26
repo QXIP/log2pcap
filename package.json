@@ -9,6 +9,7 @@
   "author": "lorenzo.mangani@gmail.com",
   "license": "AGPLv3",
   "dependencies": {
+    "buffer": "^6.0.3",
     "ip-packet": "^1.1.0",
     "pcap-generator": "^0.2.3",
     "tcp-packet": "^0.1.1",

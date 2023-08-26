@@ -1,11 +1,12 @@
-/* 
+/*
    log2pcap exporter
    (c) qxip bv 2023
 */
 
-const generator = require('pcap-generator');
+const ip = require('ip-packet');
 const tcp = require('tcp-packet');
 const udp = require('udp-packet');
+const generator = require('pcap-generator');
 
 function encodePcap(packetArray) {
   const pcapData = [];

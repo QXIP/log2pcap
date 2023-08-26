@@ -6,3 +6,5 @@ var pcapFile = log2pcap.encodePcap([
 ])
 
 console.log(pcapFile);
+
+console.log('log2pcap done');

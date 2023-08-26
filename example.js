@@ -1,3 +1,4 @@
+const log2pcap = require(".");
 const fs = require("fs");
 var pcapFile = log2pcap.encodePcap([
   {srcIp:"127.0.0.1", srcPort: 5060, dstIp: "127.0.0.2", dstPort: 5080, proto: 17, data: Buffer.from("HELLO")},

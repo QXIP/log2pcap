@@ -27,7 +27,7 @@ function encodePcap(packetArray) {
 	})
     }
     let ipv4_packet = ip.encode({
-      version: 4,
+      version: packet.version || 4,
       protocol: packet.proto,
       sourceIp: packet.srcIp,
       destinationIp: packet.dstIp,

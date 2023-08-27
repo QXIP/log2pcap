@@ -4,11 +4,13 @@
   "description": "Generate PCAP files from Packets, Log Buffers & Co",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": " browserify -r ./browser.js:browserPcap -o bundle.js"
   },
   "author": "lorenzo.mangani@gmail.com",
   "license": "AGPLv3",
   "dependencies": {
+    "browserify": "^17.0.0",
     "buffer": "^6.0.3",
     "ip-packet": "^1.1.0",
     "pcap-generator": "^0.2.3",

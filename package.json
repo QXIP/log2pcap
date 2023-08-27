@@ -1,6 +1,6 @@
 {
   "name": "log2pcap",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate PCAP files from Packets, Log Buffers & Co",
   "main": "index.js",
   "scripts": {

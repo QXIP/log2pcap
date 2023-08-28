@@ -1,10 +1,11 @@
 {
   "name": "log2pcap",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate PCAP files from Packets, Log Buffers & Co",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": " browserify -r ./browser.js:browserPcap -o bundle.js"
   },
   "author": "lorenzo.mangani@gmail.com",
   "license": "AGPLv3",
@@ -14,5 +15,8 @@
     "pcap-generator": "^0.2.3",
     "tcp-packet": "^0.1.1",
     "udp-packet": "^2.0.0"
+  },
+  "devDependencies": {
+     "browserify": "^17.0.0"
   }
 }

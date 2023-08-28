@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Test browser pcap</h1>
+
+        <div>
+            <h2>Instructions:</h2>
+
+            <ul>
+                <li>Add file name (include .pcap)</li>
+                <li>click on 'submit'</li>
+                <li>click on link to download pcap file</li>
+                <li>open downloaded file in wireshark</li>
+            </ul>
+        </div>
+
+        <div id="form">
+            <label>File name</label>
+            <input
+                type="text"
+                value=""
+                name="file-name"
+                id="file-name"
+                placeholder="Write your pcap file name"fr
+            />
+            <br />
+            <button id="submit" type="submit">Submit</button>
+            <br />
+            <a href="" id="a">click here to download your file</a>
+        </div>
+
+        <script src="bundle.js"></script>
+        <script>
+            const bpc = require("browserPcap");
+            let pcapFile = [
+                {
+                    srcIp: "127.0.0.1",
+                    srcPort: 5060,
+                    dstIp: "127.0.0.2",
+                    dstPort: 5080,
+                    proto: 17,
+                    data: "HELLO",
+                },
+                {
+                    srcIp: "127.0.0.2",
+                    srcPort: 5080,
+                    dstIp: "127.0.0.1",
+                    dstPort: 5060,
+                    proto: 17,
+                    data: "WORLD",
+                },
+            ];
+
+            document
+                .getElementById("submit")
+                .addEventListener("click", function (event) {
+                    event.preventDefault();
+                    // input with id: file-name
+                    const file = document.getElementById("file-name");
+
+                    let fileName = file?.value;
+
+                    if (
+                        fileName &&
+                        typeof fileName === "string" &&
+                        fileName !== ""
+                    ) {
+                        let pcap = bpc.writePcap(pcapFile);
+
+                        if (pcap) {
+                            let pcapData = bpc.generator(pcap);
+                            var a = document.getElementById("a");
+                            var blob = new Blob([pcapData], { type: "Buffer" });
+                            a.href = URL.createObjectURL(blob);
+                            a.download = fileName;
+                        }
+                    }
+                });
+        </script>
+    </body>
+</html>
